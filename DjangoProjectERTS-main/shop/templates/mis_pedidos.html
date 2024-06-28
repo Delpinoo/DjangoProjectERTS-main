@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="padding: 100px;">
+    <div class="alert alert-primary" role="alert">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="row" colspan="5" class="text-center">MIS PEDIDOS</th>
+                </tr>
+                <tr>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">IMAGEN</th>
+                    <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">ESTADO</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                {% if request.session.carrito.items %}
+
+                    {% for producto in productos_carrito %}
+                        <tr>
+                            <td>{{  }}</td>
+                            <td><img src="{{ producto.imagen.url }}" alt="{{ producto.producto }}" width="50"></td>
+                            <td>{{ producto.descripcion }}</td>
+                            <td>${{ producto.acumulado }}</td>
+                            <td>Comprado</td> 
+                        </tr>
+                    
+                    {% endfor %}
+                    
+                {% else %}
+                    
+                        <tr>
+                            <td colspan="5">
+                                <div class="alert alert-danger text-center"> Sin Productos </div>
+                            </td>
+                        </tr>
+                    
+                {% endif %}
+                
+            </tbody>
+        </table>
+        <hr>
+    </div>
+    <div class="row text-center">
+        <div class="col-6"><a href="{% url 'tienda' %}" class="btn btn-primary">Volver a la Tienda</a></div>
+    </div>
+</div>
+
+{% endblock %}

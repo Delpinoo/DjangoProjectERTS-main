@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+<div style="padding: 100px;">
+    <div class="alert alert-primary" role="alert">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="row" colspan="5" class="text-center">CARRITO</th>
+                </tr>
+                <tr>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">IMAGEN</th>
+                    <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">CANTIDAD</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                {% if request.session.carrito.items %}
+                
+                {% for key, value in request.session.carrito.items %}
+                
+                <tr>
+                    <td>{{value.nombre}}</td>
+                    <td><img src="{{ value.imagen }}" alt="{{value.nombre}}" width="50"></td>
+                    <td>{{value.descripcion}}</td>
+                    <td>${{value.acumulado}}</td>
+                    <td>
+                        <a href="{% url 'agregar_otro' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                        <a href="{% url 'restar' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+                
+                {% else %}
+                
+                <tr>
+                    <td colspan="5">
+                        <div class="alert alert-danger text-center"> Sin Productos </div>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th scope="row">Total:</th>
+                    <th scope="row"></th>
+                    <th scope="row"></th>
+                    <td colspan="4">$ {{total_carrito}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <hr>
+    </div>
+            <div class="row text-center">
+                <div class="col-6"><a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a></div>
+                <div class="col-6"><a href="{% url 'mis_pedidos' %}" class="btn btn-success">Comprar</a></div>
+            </div>
+</div>
+
+{% else %}
+
+        <script>
+            window.location.href = "{% url 'login' %}"
+        </script>
+
+{% endif %}
+
+{% endblock %}

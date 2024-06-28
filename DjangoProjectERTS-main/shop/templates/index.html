@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block js %}
+    <script>
+        function eliminarProducto(id){
+            Swal.fire({
+                "title": "Estas seguro que deseas eliminar?",
+                "icon": "warning",
+                "showCancelButton": true,
+                "confirmButtonText": "Eliminar",
+                "reverseButtons": true,
+                "confirmButtonColor": "red"
+            })
+            .then(function(result){
+                if(result.isConfirmed){
+                    window.location.href = "/shop/eliminar-producto/"+id+"/"
+                }
+            })
+        }
+    </script>
+{% endblock %}
+{% block content %}
+
+<br>
+<h1 class="mt-5">Productos</h1>
+<a href="{% url "shop:agregar_producto" %}"class="btn btn-outline-primary">Nuevo Producto</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Categoria</th>
+            <th>Creacion</th>
+            <th></th>
+
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td><img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" style="max-width: 100px; height: auto;"></td>
+            <td><a href="{% url 'shop:modificar_producto' producto.id %}">{{ producto.nombre }}</a></td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>{{ producto.creado_en }}</td>
+            <td><a href="#" onclick="eliminarProducto({{ producto.id }})" class=" btn btn-close "></a></td>
+
+            
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+    {% include 'paginator.html' %}
+
+{% endblock %}

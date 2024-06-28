@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+    <br>
+    <div class="mt-5 text-center">
+        <h1>Contacto</h1>
+    </div>
+    
+    <form 
+    novalidate
+    action="{% url 'shop:contacto' %}"
+    method='post'>
+    {% csrf_token %}
+    {{ contacto_form }}
+
+    <button type="submit" id="btnEnviar" class="btn btn-outline-primary mb-5">Enviar</button>
+</form>
+    </form>
+    
+{% endblock %}

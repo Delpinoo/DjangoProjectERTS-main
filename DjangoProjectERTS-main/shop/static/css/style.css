@@ -1,0 +1,15 @@
+.background {
+    background-image: url('../img/back.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+div h1{
+    font-size: 40px;
+}

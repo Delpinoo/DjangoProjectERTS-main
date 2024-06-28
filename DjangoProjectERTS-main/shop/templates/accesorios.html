@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <div class="mt-5 text-center">
+        <h1>ACCESORIOS</h1>
+        <hr class="my-4">
+    </div>
+    
+    {% load humanize %}
+    {{ value|intcomma }}
+    <div class="container mt-4">
+        <div class="row">
+            {% for producto in productos %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 ">
+                <div class="card h-100 border-0" >
+                    {% if producto.imagen %}
+                    <a href="{% url 'shop:detalle' producto.id %}"><img src="{{ producto.imagen.url }}" class="card-img-top img-fluid d-block" alt="{{ producto.nombre }}"></a>
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title text-center">{{ producto.nombre }}</h4>
+                        <p class="card-text text-center">${{ producto.precio|intcomma }}</p>
+                        <div class="text-center mb-5">
+                            <a href="{% url 'shop:detalle' producto.id %}" class="btn btn-outline-primary">Ver Producto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

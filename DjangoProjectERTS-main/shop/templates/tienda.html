@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <div class="mt-5 text-center">
+        <h1>Tienda</h1>
+        <hr class="my-4">
+    </div>
+    
+    <div class=" mt-5">
+        <div class="row mt-5">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4 ">
+                <div class="card h-100 border-0" >
+                    <a href="{% url "shop:stickers" %}" ><img src="{% static 'img/categoriasticekr.png' %} " class="card-img-top img-fluid d-block" alt=""></a>
+                    <div class="card-body">
+                        <h2 class="card-title text-center mt-3">Stickers</h2>
+                        <div class="text-center mb-5">
+                            <a href="{% url "shop:stickers" %}" class="btn btn-outline-primary mt-2">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4 ">
+                <div class="card h-100 border-0" >
+                    <a href="{% url "shop:llantas" %}" ><img src="{% static 'img/categoriallanta.png' %} " class="card-img-top img-fluid d-block" alt=""></a>
+                    <div class="card-body">
+                        <h2 class="card-title text-center mt-3">Llantas</h2>
+                        <div class="text-center mb-5">
+                            <a href="{% url "shop:llantas" %}" class="btn btn-outline-primary mt-2">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4 ">
+                <div class="card h-100 border-0" >
+                    <a href="{% url "shop:accesorios" %}" ><img src="{% static 'img/categoriaescape.png' %} " class="card-img-top img-fluid d-block" alt=""></a>
+                    <div class="card-body">
+                        <h2 class="card-title text-center mt-3">Accesorios</h2>
+                        <div class="text-center mb-5">
+                            <a href="{% url "shop:accesorios" %}" class="btn btn-outline-primary mt-2">Ver Productos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
